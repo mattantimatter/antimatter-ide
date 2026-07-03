@@ -1,13 +1,18 @@
 /*--------------------------------------------------------------------------------------
- *  Copyright 2025 Glass Devtools, Inc. All rights reserved.
- *  Licensed under the Apache License, Version 2.0. See LICENSE.txt for more information.
+ *  Antimatter IDE — Brand Design System
+ *  Built on Void (open-source VS Code fork by Glass Devtools, Inc.)
+ *  Antimatter AI — antimatterai.com
  *--------------------------------------------------------------------------------------*/
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Antimatter Brand Fonts ──────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
 & {
+	/* ─── VS Code passthrough tokens (keep for editor compatibility) ─── */
 	--void-bg-1: var(--vscode-input-background);
 	--void-bg-1-alt: var(--vscode-badge-background);
 	--void-bg-2: var(--vscode-sideBar-background);
@@ -19,7 +24,6 @@
 	--void-fg-1: var(--vscode-editor-foreground);
 	--void-fg-2: var(--vscode-input-foreground);
 	--void-fg-3: var(--vscode-input-placeholderForeground);
-	/* --void-fg-4: var(--vscode-tab-inactiveForeground); */
 	--void-fg-4: var(--vscode-list-deemphasizedForeground);
 
 	--void-warning: var(--vscode-charts-yellow);
@@ -29,10 +33,430 @@
 	--void-border-3: var(--vscode-commandCenter-inactiveBorder);
 	--void-border-4: var(--vscode-editorGroup-border);
 
-	--void-ring-color: #007FD4;
-	--void-link-color: #007FD4;
+	/* ─── Antimatter Brand Tokens ──────────────────────────────────── */
+
+	/* Primary accent — indigo/violet */
+	--am-primary:            #c1c1ff;
+	--am-primary-container:  #a2a3e9;
+	--am-on-primary:         #282967;
+	--am-on-primary-container: #363775;
+	--am-primary-fixed:      #e1dfff;
+	--am-primary-fixed-dim:  #c1c1ff;
+	--am-inverse-primary:    #575898;
+
+	/* Surfaces — deep dark */
+	--am-background:         #111415;
+	--am-surface:            #111415;
+	--am-surface-dim:        #111415;
+	--am-surface-bright:     #37393b;
+	--am-surface-container-lowest: #0c0e10;
+	--am-surface-container-low:    #1a1c1d;
+	--am-surface-container:        #1e2021;
+	--am-surface-container-high:   #282a2c;
+	--am-surface-container-highest: #333537;
+	--am-surface-variant:    #333537;
+	--am-inverse-surface:    #e2e2e4;
+
+	/* Foreground */
+	--am-on-background:      #e2e2e4;
+	--am-on-surface:         #e2e2e4;
+	--am-on-surface-variant: #c7c5d1;
+	--am-inverse-on-surface: #2f3132;
+
+	/* Secondary */
+	--am-secondary:          #c8c6c5;
+	--am-secondary-container: #474746;
+	--am-on-secondary:       #313030;
+	--am-on-secondary-container: #b7b5b4;
+	--am-secondary-fixed:    #e5e2e1;
+	--am-secondary-fixed-dim: #c8c6c5;
+	--am-on-secondary-fixed: #1c1b1b;
+	--am-on-secondary-fixed-variant: #474746;
+
+	/* Tertiary */
+	--am-tertiary:           #c9c6c5;
+	--am-tertiary-container: #aba9a8;
+	--am-on-tertiary:        #313030;
+	--am-on-tertiary-container: #3f3e3e;
+	--am-tertiary-fixed:     #e5e2e1;
+	--am-tertiary-fixed-dim: #c9c6c5;
+	--am-on-tertiary-fixed:  #1c1b1b;
+	--am-on-tertiary-fixed-variant: #474646;
+
+	/* Error */
+	--am-error:              #ffb4ab;
+	--am-error-container:    #93000a;
+	--am-on-error:           #690005;
+	--am-on-error-container: #ffdad6;
+
+	/* Outline */
+	--am-outline:            #918f9b;
+	--am-outline-variant:    #464650;
+
+	/* Surface tint */
+	--am-surface-tint:       #c1c1ff;
+
+	/* Typography */
+	--am-font-sans:          'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+	--am-font-mono:          'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+	/* Spacing */
+	--am-activity-bar-width: 56px;
+	--am-sidebar-width:      260px;
+	--am-panel-gap:          8px;
+
+	/* Ring / link */
+	--void-ring-color:       var(--am-primary-container);
+	--void-link-color:       var(--am-primary);
 }
 
+/* ─── Global font application ─────────────────────────────────────────────── */
+.@@void-scope,
+.@@void-scope * {
+	font-family: var(--am-font-sans);
+}
+
+.@@void-scope code,
+.@@void-scope pre,
+.@@void-scope kbd,
+.@@void-scope .font-mono,
+.@@void-scope .am-mono {
+	font-family: var(--am-font-mono) !important;
+}
+
+/* ─── Scrollbar styling ───────────────────────────────────────────────────── */
+.@@void-scope ::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+.@@void-scope ::-webkit-scrollbar-track {
+	background: transparent;
+}
+.@@void-scope ::-webkit-scrollbar-thumb {
+	background: var(--am-surface-container-highest);
+	border-radius: 4px;
+}
+.@@void-scope ::-webkit-scrollbar-thumb:hover {
+	background: var(--am-outline-variant);
+}
+
+/* ─── Selection ───────────────────────────────────────────────────────────── */
+.@@void-scope ::selection {
+	background-color: var(--am-primary-container);
+	color: var(--am-on-primary-container);
+}
+
+/* ─── Settings panel nav item ─────────────────────────────────────────────── */
+.am-settings-nav-item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+	padding: 8px 16px;
+	font-size: 13px;
+	font-family: var(--am-font-sans);
+	color: var(--am-on-surface-variant);
+	cursor: pointer;
+	transition: background-color 0.15s, color 0.15s;
+	border-left: 2px solid transparent;
+}
+.am-settings-nav-item:hover {
+	background-color: var(--am-surface-variant);
+	color: var(--am-on-surface);
+}
+.am-settings-nav-item.active {
+	background-color: var(--am-surface-container-high);
+	color: var(--am-primary);
+	border-left-color: var(--am-primary);
+	font-weight: 600;
+}
+
+/* ─── Settings content card ───────────────────────────────────────────────── */
+.am-settings-card {
+	background-color: var(--am-surface-container-lowest);
+	border: 1px solid rgba(70, 70, 80, 0.2);
+	border-radius: 8px;
+	padding: 20px;
+	margin-bottom: 8px;
+	transition: border-color 0.15s;
+}
+.am-settings-card:hover {
+	border-color: rgba(70, 70, 80, 0.5);
+}
+.am-settings-card h3 {
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--am-on-surface);
+	margin-bottom: 4px;
+}
+.am-settings-card p {
+	font-size: 13px;
+	color: var(--am-on-surface-variant);
+	margin-bottom: 16px;
+	font-family: var(--am-font-mono);
+}
+
+/* ─── Antimatter primary button ───────────────────────────────────────────── */
+.am-btn-primary {
+	background-color: var(--am-primary-container);
+	color: #0a0a0a;
+	font-weight: 600;
+	font-size: 13px;
+	font-family: var(--am-font-mono);
+	padding: 6px 16px;
+	border-radius: 4px;
+	border: none;
+	cursor: pointer;
+	transition: opacity 0.15s;
+}
+.am-btn-primary:hover { opacity: 0.9; }
+
+/* ─── Antimatter outline button ───────────────────────────────────────────── */
+.am-btn-outline {
+	background: transparent;
+	color: var(--am-on-surface);
+	font-size: 13px;
+	font-family: var(--am-font-mono);
+	padding: 6px 16px;
+	border-radius: 4px;
+	border: 1px solid var(--am-outline-variant);
+	cursor: pointer;
+	transition: background-color 0.15s;
+}
+.am-btn-outline:hover { background-color: var(--am-surface-variant); }
+
+/* ─── Setup wizard step ───────────────────────────────────────────────────── */
+.am-wizard-step {
+	display: flex;
+	align-items: flex-start;
+	gap: 16px;
+	padding: 20px;
+	background-color: var(--am-surface-container-lowest);
+	border: 1px solid rgba(70, 70, 80, 0.2);
+	border-radius: 8px;
+	margin-bottom: 8px;
+}
+.am-wizard-step-number {
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	background-color: var(--am-surface-container-high);
+	color: var(--am-on-surface-variant);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 12px;
+	font-weight: 600;
+	font-family: var(--am-font-mono);
+	flex-shrink: 0;
+}
+.am-wizard-step.complete .am-wizard-step-number {
+	background-color: var(--am-primary-container);
+	color: #0a0a0a;
+}
+.am-wizard-step.active {
+	border-color: rgba(162, 163, 233, 0.3);
+}
+
+/* ─── Status indicator dot ────────────────────────────────────────────────── */
+.am-status-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	display: inline-block;
+	flex-shrink: 0;
+}
+.am-status-dot.ok      { background-color: #4ade80; }
+.am-status-dot.warn    { background-color: #facc15; }
+.am-status-dot.error   { background-color: var(--am-error); }
+.am-status-dot.idle    { background-color: var(--am-outline); }
+
+/* ─── Promo banner ────────────────────────────────────────────────────────── */
+.am-promo-banner {
+	margin-bottom: 32px;
+	border-radius: 8px;
+	border: 1px solid rgba(162, 163, 233, 0.2);
+	background-color: var(--am-surface-container-low);
+	padding: 20px;
+	position: relative;
+	overflow: hidden;
+}
+.am-promo-banner::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to right, rgba(162, 163, 233, 0.05), transparent);
+	pointer-events: none;
+}
+
+/* ─── Plan badge ──────────────────────────────────────────────────────────── */
+.am-plan-badge {
+	font-size: 11px;
+	font-family: var(--am-font-mono);
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	padding: 2px 8px;
+	border-radius: 4px;
+}
+.am-plan-badge.free {
+	background-color: var(--am-surface-container-high);
+	color: var(--am-on-surface-variant);
+}
+.am-plan-badge.premium {
+	background-color: var(--am-primary-container);
+	color: #0a0a0a;
+}
+
+/* ─── Billing card ────────────────────────────────────────────────────────── */
+.am-billing-plan-card {
+	border: 1px solid rgba(70, 70, 80, 0.3);
+	border-radius: 8px;
+	padding: 24px;
+	background-color: var(--am-surface-container-lowest);
+	transition: border-color 0.15s;
+}
+.am-billing-plan-card.current {
+	border-color: rgba(162, 163, 233, 0.4);
+	background-color: var(--am-surface-container-low);
+}
+.am-billing-plan-card.coming-soon {
+	opacity: 0.7;
+}
+
+/* ─── Toggle switch ───────────────────────────────────────────────────────── */
+.am-toggle {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	width: 36px;
+	height: 20px;
+	cursor: pointer;
+}
+.am-toggle input { opacity: 0; width: 0; height: 0; }
+.am-toggle-slider {
+	position: absolute;
+	inset: 0;
+	background-color: var(--am-surface-container-high);
+	border-radius: 10px;
+	transition: background-color 0.2s;
+}
+.am-toggle-slider::before {
+	content: '';
+	position: absolute;
+	width: 14px;
+	height: 14px;
+	left: 3px;
+	top: 3px;
+	background-color: var(--am-on-surface-variant);
+	border-radius: 50%;
+	transition: transform 0.2s, background-color 0.2s;
+}
+.am-toggle input:checked + .am-toggle-slider {
+	background-color: var(--am-primary-container);
+}
+.am-toggle input:checked + .am-toggle-slider::before {
+	transform: translateX(16px);
+	background-color: #0a0a0a;
+}
+
+/* ─── Agents window sidebar ───────────────────────────────────────────────── */
+.am-agents-sidebar {
+	width: var(--am-sidebar-width);
+	background-color: var(--am-surface-container-low);
+	border-right: 1px solid rgba(70, 70, 80, 0.3);
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	flex-shrink: 0;
+}
+.am-agents-sidebar-nav-item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 16px;
+	font-size: 14px;
+	font-family: var(--am-font-sans);
+	color: var(--am-on-surface-variant);
+	cursor: pointer;
+	border-radius: 6px;
+	margin: 2px 8px;
+	transition: background-color 0.15s, color 0.15s;
+}
+.am-agents-sidebar-nav-item:hover {
+	background-color: var(--am-surface-variant);
+	color: var(--am-on-surface);
+}
+.am-agents-sidebar-nav-item.active {
+	background-color: var(--am-surface-container-high);
+	color: var(--am-on-surface);
+}
+
+/* ─── Repo group in agents sidebar ───────────────────────────────────────── */
+.am-repo-group-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 6px 16px;
+	font-size: 13px;
+	font-family: var(--am-font-sans);
+	color: var(--am-on-surface);
+	font-weight: 500;
+}
+.am-thread-item {
+	padding: 6px 16px 6px 36px;
+	font-size: 13px;
+	font-family: var(--am-font-sans);
+	color: var(--am-on-surface-variant);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-radius: 4px;
+	margin: 1px 8px;
+	transition: background-color 0.15s, color 0.15s;
+}
+.am-thread-item:hover {
+	background-color: var(--am-surface-variant);
+	color: var(--am-on-surface);
+}
+.am-thread-item.active {
+	background-color: var(--am-surface-container-high);
+	color: var(--am-on-surface);
+}
+
+/* ─── Agents composer ─────────────────────────────────────────────────────── */
+.am-composer-wrap {
+	background-color: var(--am-surface-container);
+	border: 1px solid rgba(70, 70, 80, 0.3);
+	border-radius: 8px;
+	transition: border-color 0.15s, box-shadow 0.15s;
+}
+.am-composer-wrap:focus-within {
+	border-color: rgba(162, 163, 233, 0.5);
+	box-shadow: 0 0 0 1px rgba(162, 163, 233, 0.2);
+}
+
+/* ─── Context selector pill ───────────────────────────────────────────────── */
+.am-context-pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	padding: 3px 10px;
+	font-size: 12px;
+	font-family: var(--am-font-mono);
+	color: var(--am-on-surface-variant);
+	background-color: var(--am-surface-container-high);
+	border: 1px solid rgba(70, 70, 80, 0.3);
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.15s;
+}
+.am-context-pill:hover {
+	background-color: var(--am-surface-variant);
+	color: var(--am-on-surface);
+}
+
+/* ─── Misc ────────────────────────────────────────────────────────────────── */
 .select-child-restyle select {
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -47,55 +471,10 @@
 	outline: none !important;
 }
 
-
-
 .inherit-bg-all-restyle > * {
 	background-color: inherit !important;
 }
 
-
 .bg-editor-style-override {
 	--vscode-sideBar-background: var(--vscode-editor-background);
 }
-
-
-
-/* html {
-	font-size: var(--vscode-font-size);
-}
-
-.btn {
-	@apply cursor-pointer transition-colors;
-
-	&.btn-primary {
-		@apply bg-vscode-button-bg text-vscode-button-fg;
-
-		&:not(:disabled) {
-			@apply hover:bg-vscode-button-hoverBg;
-		}
-	}
-
-	&.btn-sm {
-		@apply px-3 py-1 text-sm;
-	}
-
-	&.btn-secondary {
-		@apply bg-vscode-button-secondary-bg text-vscode-button-secondary-fg;
-
-		&:not(:disabled) {
-			@apply hover:bg-vscode-button-secondary-hoverBg;
-		}
-	}
-
-	&:disabled {
-		@apply opacity-75 cursor-not-allowed;
-	}
-}
-
-.input {
-	@apply bg-vscode-input-bg text-vscode-input-fg border-vscode-input-border focus:outline-vscode-focus-border;
-}
-
-.dropdown {
-	@apply bg-vscode-dropdown-bg text-vscode-dropdown-foreground border-vscode-dropdown-border focus:outline-vscode-focus-border;
-} */

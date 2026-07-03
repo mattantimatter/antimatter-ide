@@ -1,61 +1,111 @@
-## Void is now deprecated.
-Void is deprecated and no longer accepting contributions.
-Thank you to everyone who contributed, both with lines of code and support from the community. Void remains open source and is still one of the best references to use when forking VS Code.
+# Antimatter IDE
 
+**A local-first AI coding environment built on VS Code, designed to match Cursor's UX with Antimatter branding and deep local model support.**
 
-## Download
+Antimatter IDE is a fork of [Void](https://github.com/voideditor/void) — the open-source VS Code fork — rebuilt with the Antimatter design system, a Cursor-parity settings panel, a standalone Agents Window, and a first-run Setup Wizard for connecting local models (Ollama, HuggingFace CLI) and cloud providers (OpenAI, Anthropic, Gemini, DeepSeek).
 
-To view a list of newer Void forks, see [Void Forks](http://github.com/voideditor/void-forks/).
+---
 
-To download an old version of Void, see [Releases](https://github.com/voideditor/void/releases).
+## What's Different from Void
 
-## Forking VS Code
+| Feature | Void | Antimatter IDE |
+|---|---|---|
+| Brand | Void | Antimatter AI |
+| Typography | System UI | Plus Jakarta Sans + JetBrains Mono |
+| Color system | Void purple | Antimatter indigo/violet (Material You dark) |
+| Settings panel | Icon-only rail | Cursor-style text-label vertical nav |
+| Setup Wizard | None | API keys, Ollama, HuggingFace CLI |
+| Agents Window | None | Standalone window with repo sidebar + composer |
+| Welcome screen | VS Code default | Clean logo + keyboard shortcuts |
+| Billing tab | None | Free plan + Premium coming soon |
+| Plugins tab | None | Vercel, Supabase, GitHub, HuggingFace |
 
-If you're forking VS Code, you might still want to reference Void's logic, and see our [Codebase Guide](https://github.com/voideditor/void/blob/main/VOID_CODEBASE_GUIDE.md) and [How to Contribute](https://github.com/voideditor/void/blob/main/HOW_TO_CONTRIBUTE.md).
+---
 
-- We mount React + Tailwind. This is not possible in plain VS Code, and required extending the build pipeline to compile React and [scope](https://github.com/andrewpareles/scope-tailwind) Tailwind ourselves.
+## Architecture
 
-- You can copy our GitHub Actions to package, sign, and auto-update Void. VS Code's build pipeline is private, so this is normally very hard.
+All Antimatter-specific UI lives in:
 
-- Our AI provider code is built from scratch, allowing us to support autocomplete (FIM) and other custom responses. We expose grammars for common `<thinking>` tags, tool tags, etc. Feel free to reference our architecture for using IPC and satisfying CSP.
+```
+src/vs/workbench/contrib/void/browser/react/src/antimatter/
+├── AntimatterSettings.tsx      # Settings panel shell (editor tab)
+├── AntimatterAgentsWindow.tsx  # Standalone agents window
+├── AntimatterWelcome.tsx       # Welcome screen (no file open)
+├── antimatter.css              # Brand design tokens + component styles
+├── index.ts                    # Barrel exports
+└── tabs/
+    ├── GeneralTab.tsx          # Account, preferences, layout
+    ├── SetupWizardTab.tsx      # API keys, Ollama, HuggingFace CLI
+    ├── ModelsTab.tsx           # Cloud + local provider configuration
+    ├── RulesTab.tsx            # Rules, Skills, Subagents
+    ├── PluginsTab.tsx          # Vercel, Supabase, GitHub, HuggingFace
+    ├── IndexingTab.tsx         # Codebase indexing
+    └── BillingTab.tsx          # Free plan + Premium coming soon
+```
 
-- Use our custom services to edit files. EditCodeService lets you show diffs as code streams in, even token by token. VoidModelService lets you edit files in the background and syncs OS files with your text buffers.
+The base VS Code + React + Tailwind mounting, AI provider services, diff zones, and autocomplete are all inherited from Void. See [Void's Codebase Guide](https://github.com/voideditor/void/blob/main/VOID_CODEBASE_GUIDE.md) for architecture details.
 
-- Everything we've done is 100% open source. See [repos](https://github.com/orgs/voideditor/repositories) for a complete picture of all the repos that make up Void.
+---
 
+## Getting Started (Development)
 
+### Prerequisites
 
-# Welcome to Void.
+- Node.js 20+
+- Python 3.11+ (for native modules)
+- Xcode Command Line Tools (macOS) or build-essential (Linux)
+- Git
 
-<div align="center">
-	<img
-		src="./src/vs/workbench/browser/parts/editor/media/slice_of_void.png"
-	 	alt="Void Welcome"
-		width="300"
-	 	height="300"
-	/>
-</div>
+### Setup
 
-Use AI agents on your codebase, checkpoint and visualize changes, and bring any model or host locally. Void sends messages directly to providers without retaining your data.
+```bash
+# 1. Clone the repo
+git clone https://github.com/mattantimatter/antimatter-ide.git
+cd antimatter-ide
 
-This repo contains the full sourcecode for Void's Desktop app. If you're new, welcome!
+# 2. Install dependencies (this takes 5-10 minutes)
+yarn
 
-- 🧭 [Website](https://voideditor.com)
+# 3. Build the React layer
+cd src/vs/workbench/contrib/void/browser/react
+yarn
+yarn build
+cd ../../../../../../../
 
-- 🚙 [Roadmap](https://github.com/orgs/voideditor/projects/2)
+# 4. Watch mode (rebuilds on file changes)
+yarn watch
 
-- 🔨 [Contribute](https://github.com/voideditor/void/blob/main/HOW_TO_CONTRIBUTE.md)
+# 5. Run the IDE
+./scripts/code.sh        # macOS/Linux
+.\scripts\code.bat       # Windows
+```
 
+---
 
+## Design System
 
+### Typography
+- **Primary:** `Plus Jakarta Sans` (headings, UI labels, body)
+- **Monospace:** `JetBrains Mono` (code, metadata, timestamps)
 
-## Reference
+### Color Tokens
 
-Void is a fork of the [vscode](https://github.com/microsoft/vscode) repository. For a guide to our codebase, see [VOID_CODEBASE_GUIDE](https://github.com/voideditor/void/blob/main/VOID_CODEBASE_GUIDE.md).
+```css
+--am-background:              #0d0d0f
+--am-surface-container-low:   #131316
+--am-surface-container:       #18181c
+--am-surface-container-high:  #1e1e24
+--am-primary:                 #a2a3e9
+--am-primary-container:       #c5c6f5
+--am-on-surface:              #e4e1ec
+--am-on-surface-variant:      #8b8b9e
+--am-outline:                 #44444f
+```
 
-For a guide on how to develop your own version of Void, see [HOW_TO_CONTRIBUTE](https://github.com/voideditor/void/blob/main/HOW_TO_CONTRIBUTE.md) and [void-builder](https://github.com/voideditor/void-builder).
+---
 
+## License
 
+MIT — same as VS Code and Void. See [LICENSE](./LICENSE).
 
-## Support
-You can always reach us in our [Discord server](https://discord.gg/RSNjgaugJs) or contact us via email at hello@voideditor.com.
+Built by [Antimatter AI](https://antimatterai.com) · Atlanta, GA

@@ -1,0 +1,270 @@
+/*--------------------------------------------------------------------------------------
+ *  Antimatter IDE — Brand Design System CSS
+ *  All Antimatter-specific CSS variables, component classes, and overrides.
+ *  Imported by AntimatterSettings.tsx, AntimatterAgentsWindow.tsx, AntimatterWelcome.tsx
+ *--------------------------------------------------------------------------------------*/
+
+/* ─── Google Fonts ──────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+/* ─── Antimatter Design Tokens ──────────────────────────────────────────────── */
+:root,
+.@@void-scope {
+  /* Typography */
+  --am-font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --am-font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  /* Dark surface palette (Material You Dark scheme) */
+  --am-background:                 #0d0d0f;
+  --am-surface:                    #111114;
+  --am-surface-dim:                #0a0a0c;
+  --am-surface-bright:             #1e1e24;
+  --am-surface-container-lowest:   #080809;
+  --am-surface-container-low:      #131316;
+  --am-surface-container:          #18181c;
+  --am-surface-container-high:     #1e1e24;
+  --am-surface-container-highest:  #26262e;
+  --am-surface-variant:            #2a2a35;
+  --am-inverse-surface:            #e4e1ec;
+
+  /* On-surface text */
+  --am-on-background:              #e4e1ec;
+  --am-on-surface:                 #e4e1ec;
+  --am-on-surface-variant:         #8b8b9e;
+  --am-inverse-on-surface:         #1a1a22;
+
+  /* Primary — Antimatter indigo/violet */
+  --am-primary:                    #a2a3e9;
+  --am-primary-container:          #c5c6f5;
+  --am-on-primary:                 #1a1a3e;
+  --am-on-primary-container:       #0d0d2a;
+  --am-primary-fixed:              #e8e8ff;
+  --am-primary-fixed-dim:          #c5c6f5;
+  --am-inverse-primary:            #4b4c9e;
+
+  /* Secondary */
+  --am-secondary:                  #c4c0d8;
+  --am-secondary-container:        #3a3848;
+  --am-on-secondary:               #2d2b3c;
+  --am-on-secondary-container:     #e0ddf0;
+
+  /* Error */
+  --am-error:                      #ffb4ab;
+  --am-error-container:            #93000a;
+  --am-on-error:                   #690005;
+  --am-on-error-container:         #ffdad6;
+
+  /* Outline */
+  --am-outline:                    #44444f;
+  --am-outline-variant:            #2e2e3a;
+  --am-surface-tint:               #a2a3e9;
+}
+
+/* ─── Settings Navigation ───────────────────────────────────────────────────── */
+
+.am-settings-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--am-on-surface-variant);
+  font-size: 13px;
+  font-family: var(--am-font-sans);
+  text-align: left;
+  border-radius: 0;
+  transition: background-color 0.1s, color 0.1s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.am-settings-nav-item:hover {
+  background-color: var(--am-surface-container);
+  color: var(--am-on-surface);
+}
+
+.am-settings-nav-item.active {
+  background-color: var(--am-surface-container-high);
+  color: var(--am-on-surface);
+  font-weight: 600;
+}
+
+/* ─── Settings Cards ────────────────────────────────────────────────────────── */
+
+.am-settings-card {
+  padding: 16px 20px;
+  background-color: var(--am-surface-container-low);
+  border: 1px solid rgba(70, 70, 80, 0.25);
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.am-settings-card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--am-font-sans);
+  color: var(--am-on-surface);
+  margin: 0 0 4px;
+}
+
+.am-settings-card p {
+  font-size: 12px;
+  font-family: var(--am-font-mono);
+  color: var(--am-on-surface-variant);
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+
+.am-settings-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* ─── Buttons ───────────────────────────────────────────────────────────────── */
+
+.am-btn-primary {
+  padding: 7px 16px;
+  background-color: var(--am-primary-container);
+  color: #0a0a0a;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--am-font-sans);
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.am-btn-primary:hover {
+  opacity: 0.9;
+}
+
+.am-btn-primary:active {
+  transform: scale(0.98);
+}
+
+.am-btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.am-btn-outline {
+  padding: 7px 16px;
+  background-color: transparent;
+  color: var(--am-on-surface);
+  border: 1px solid rgba(70, 70, 80, 0.4);
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: var(--am-font-sans);
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.am-btn-outline:hover {
+  background-color: var(--am-surface-container);
+  border-color: rgba(162, 163, 233, 0.3);
+}
+
+.am-btn-outline:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ─── Promo Banner ──────────────────────────────────────────────────────────── */
+
+.am-promo-banner {
+  position: relative;
+  padding: 20px 24px;
+  background-color: var(--am-surface-container);
+  border: 1px solid rgba(70, 70, 80, 0.25);
+  border-radius: 10px;
+}
+
+/* ─── Wizard Steps ──────────────────────────────────────────────────────────── */
+
+.am-wizard-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 20px;
+  background-color: var(--am-surface-container-low);
+  border: 1px solid rgba(70, 70, 80, 0.2);
+  border-radius: 8px;
+  transition: border-color 0.15s;
+}
+
+.am-wizard-step:hover {
+  border-color: rgba(162, 163, 233, 0.2);
+}
+
+/* ─── Billing Plan Cards ────────────────────────────────────────────────────── */
+
+.am-billing-plan-card {
+  padding: 24px;
+  background-color: var(--am-surface-container-low);
+  border: 1px solid rgba(70, 70, 80, 0.25);
+  border-radius: 10px;
+}
+
+.am-billing-plan-card.current {
+  border-color: rgba(162, 163, 233, 0.3);
+  background-color: var(--am-surface-container);
+}
+
+.am-billing-plan-card.coming-soon {
+  opacity: 0.8;
+}
+
+.am-plan-badge {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--am-font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.am-plan-badge.free {
+  background-color: var(--am-surface-container-high);
+  color: var(--am-on-surface-variant);
+}
+
+/* ─── Plugin Cards ──────────────────────────────────────────────────────────── */
+
+.am-plugin-card {
+  padding: 16px 20px;
+  background-color: var(--am-surface-container-low);
+  border: 1px solid rgba(70, 70, 80, 0.2);
+  border-radius: 8px;
+  transition: border-color 0.15s;
+}
+
+.am-plugin-card:hover {
+  border-color: rgba(162, 163, 233, 0.2);
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────────────── */
+
+.@@void-scope ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.@@void-scope ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.@@void-scope ::-webkit-scrollbar-thumb {
+  background: var(--am-outline);
+  border-radius: 3px;
+}
+
+.@@void-scope ::-webkit-scrollbar-thumb:hover {
+  background: var(--am-on-surface-variant);
+}

@@ -31,7 +31,11 @@ module.exports = {
 					},
 				},
 			}),
-			fontSize: {
+				fontFamily: {
+					'am-sans': ['Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif'],
+					'am-mono': ['JetBrains Mono', 'Fira Code', 'Cascadia Code', 'monospace'],
+				},
+				fontSize: {
 				xs: '10px',
 				sm: '11px',
 				root: '13px',
@@ -73,6 +77,46 @@ module.exports = {
 
 				'void-ring-color': 'var(--void-ring-color)',
 				'void-link-color': 'var(--void-link-color)',
+
+				// ─── Antimatter Brand Colors ───────────────────────────────────
+				'am-primary':                    'var(--am-primary)',
+				'am-primary-container':          'var(--am-primary-container)',
+				'am-on-primary':                 'var(--am-on-primary)',
+				'am-on-primary-container':       'var(--am-on-primary-container)',
+				'am-primary-fixed':              'var(--am-primary-fixed)',
+				'am-primary-fixed-dim':          'var(--am-primary-fixed-dim)',
+				'am-inverse-primary':            'var(--am-inverse-primary)',
+
+				'am-background':                 'var(--am-background)',
+				'am-surface':                    'var(--am-surface)',
+				'am-surface-dim':                'var(--am-surface-dim)',
+				'am-surface-bright':             'var(--am-surface-bright)',
+				'am-surface-container-lowest':   'var(--am-surface-container-lowest)',
+				'am-surface-container-low':      'var(--am-surface-container-low)',
+				'am-surface-container':          'var(--am-surface-container)',
+				'am-surface-container-high':     'var(--am-surface-container-high)',
+				'am-surface-container-highest':  'var(--am-surface-container-highest)',
+				'am-surface-variant':            'var(--am-surface-variant)',
+				'am-inverse-surface':            'var(--am-inverse-surface)',
+
+				'am-on-background':              'var(--am-on-background)',
+				'am-on-surface':                 'var(--am-on-surface)',
+				'am-on-surface-variant':         'var(--am-on-surface-variant)',
+				'am-inverse-on-surface':         'var(--am-inverse-on-surface)',
+
+				'am-secondary':                  'var(--am-secondary)',
+				'am-secondary-container':        'var(--am-secondary-container)',
+				'am-on-secondary':               'var(--am-on-secondary)',
+				'am-on-secondary-container':     'var(--am-on-secondary-container)',
+
+				'am-error':                      'var(--am-error)',
+				'am-error-container':            'var(--am-error-container)',
+				'am-on-error':                   'var(--am-on-error)',
+				'am-on-error-container':         'var(--am-on-error-container)',
+
+				'am-outline':                    'var(--am-outline)',
+				'am-outline-variant':            'var(--am-outline-variant)',
+				'am-surface-tint':               'var(--am-surface-tint)',
 
 				vscode: {
 					// see: https://code.visualstudio.com/api/extension-guides/webview#theming-webview-content
